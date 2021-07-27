@@ -4,7 +4,7 @@ const mongoose = require('mongoose'), Schema = mongoose.Schema;
 const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
-const announcementSchema = new mongoose.Schema({
+const announcementhistorySchema = new mongoose.Schema({
     title: String,
     description: String,
     address:String,
@@ -18,7 +18,6 @@ const announcementSchema = new mongoose.Schema({
     picture5:String,
     strongPoints:String,
     extraAccomodations:String,
-    comments:String,
     views:Number,
     startDate:Date,
     endDate:Date,
@@ -28,6 +27,6 @@ const announcementSchema = new mongoose.Schema({
       timestamps: true
     }
   );
-  const Announcement = mongoose.model('Announcement', announcementSchema);
+  const AnnouncementHistory = mongoose.model('AnnouncementHistory', announcementhistorySchema);
   
-module.exports.Announcement = Announcement;
+module.exports.AnnouncementHistory = AnnouncementHistory;

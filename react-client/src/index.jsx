@@ -51,10 +51,12 @@ class App extends React.Component {
         <div className="nav">
           <span className="logo"
             onClick={() => this.changeView('login')}>
-            renting
+            NeWay
           </span>
 
-         
+          <span className="nav-unselected" onClick={() => this.changeView('signup')}>
+            Register
+          </span>
 
           <span className="nav-unselected" onClick={() => this.changeView('logout')}>
             Logout

@@ -4,7 +4,7 @@ const mongoose = require('mongoose'), Schema = mongoose.Schema;
 const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
-const bookingSchema = new mongoose.Schema({
+const bookinghistorySchema = new mongoose.Schema({
   title: String,
   description: String,
   address:String,
@@ -28,6 +28,6 @@ const bookingSchema = new mongoose.Schema({
       }
     );
 
-    const Booking = mongoose.model('Booking', bookingSchema);
+    const BookingHistory = mongoose.model('BookingHistory', bookinghistorySchema);
 
-    module.exports.Booking = Booking;
+    module.exports.BookingHistory = BookingHistory;
