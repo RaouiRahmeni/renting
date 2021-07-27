@@ -20,4 +20,4 @@ const Admin = mongoose.model('Admin', adminSchema);
 //     if (err) return handleError(err);
 //     // saved!
 //   }); 
-module.exports.Admin = Admin;
+module.exports= Admin;

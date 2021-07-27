@@ -29,4 +29,4 @@ const announcementhistorySchema = new mongoose.Schema({
   );
   const AnnouncementHistory = mongoose.model('AnnouncementHistory', announcementhistorySchema);
   
-module.exports.AnnouncementHistory = AnnouncementHistory;
+module.exports= AnnouncementHistory;

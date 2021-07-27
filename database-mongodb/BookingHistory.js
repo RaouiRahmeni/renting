@@ -30,4 +30,4 @@ const bookinghistorySchema = new mongoose.Schema({
 
     const BookingHistory = mongoose.model('BookingHistory', bookinghistorySchema);
 
-    module.exports.BookingHistory = BookingHistory;
+    module.exports = BookingHistory;

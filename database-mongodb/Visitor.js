@@ -20,4 +20,4 @@ const visitorSchema = new mongoose.Schema({
   }
 );
 const Visitor = mongoose.model('Visitor', visitorSchema);
-module.exports.Visitor = Visitor;
+module.exports = Visitor;

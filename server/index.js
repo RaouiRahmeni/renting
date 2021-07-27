@@ -58,8 +58,8 @@ app.post('/api/renting/login', function (req, res) {
 
 app.post('/api/renting/signup/host', function (req, res) {
   console.log("data from req:", req.body);
-  console.log('host',Host);
-  var host = new Host({ username: 'john', password: '0000',phone:'961102',email:'john@gmail.com',cardId:'0556432' });
+  
+  var host = new Host(req.body);
     host.save(function (err) {
       if (err) return handleError(err);
       // saved!
@@ -68,7 +68,7 @@ app.post('/api/renting/signup/host', function (req, res) {
 });
 app.post('/api/renting/signup/visitor', function (req, res) {
   console.log("data from req:", req.body);
-  Visitor.create({ username: 'john', password: '0000',phone:'961102',email:'john@gmail.com',cardId:'0556432' },(error) => {
+  Visitor.create(req.body,(error) => {
     if (error) {
       throw error
     }

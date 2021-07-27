@@ -27,4 +27,4 @@ const Host = mongoose.model('Host', hostSchema);
 //     if (err) return handleError(err);
 //     // saved!
 //   }); 
-module.exports.Host = Host;
+module.exports = Host;
