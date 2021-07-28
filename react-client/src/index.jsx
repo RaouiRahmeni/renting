@@ -71,4 +71,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('cvmaker'));
+ReactDOM.render(<App />, document.getElementById('renting'));

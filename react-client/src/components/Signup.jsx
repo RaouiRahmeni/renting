@@ -41,7 +41,7 @@ class Signup extends React.Component {
                 phone: this.state.phone, cardId: this.state.cardId
             }).then((data) => {
 
-
+                this.props.changeId(data[0]._id)
                 this.props.changeView('createAnnouncement');
 
             })
@@ -52,7 +52,7 @@ class Signup extends React.Component {
                 phone: this.state.phone, cardId: this.state.cardId
             }).then((data) => {
 
-
+                this.props.changeId(data[0]._id)
                 this.props.changeView('search');
 
             })
@@ -65,7 +65,8 @@ class Signup extends React.Component {
 
         return (
             <div>
-
+<div className="left-side"></div>
+<div className="right-side">
                 <h2>Create an account</h2>
                 <div className="input-container">
                     <i className="fa fa-user icon"></i>
@@ -100,7 +101,7 @@ class Signup extends React.Component {
 
                 <button type="submit" className="btn" onClick={() => { this.addUser() }} >Register</button>
 
-
+                </div>
             </div>
 
 

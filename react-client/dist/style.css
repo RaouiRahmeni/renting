@@ -44,7 +44,7 @@
 }
 body {
   font-family: 'PT Serif', sans-serif;
-  margin: 0px;
+  margin: 10px;
   color: #2C3E50;
   background-color: #ECF0F1;
   font-size: 1.1em;
@@ -88,3 +88,21 @@ body {
   color: white;
 }
 
+.left-side {
+  float: left;
+  width: 400px;
+  background: center / contain no-repeat url("./left-side.jpg");
+  height:688px;
+  background-size:  700px 700px;
+  
+  
+  margin: 0 auto;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 1px;
+  margin-bottom: 0px;
+}
+.right-side {
+  float: right;
+  width: 500px;
+}

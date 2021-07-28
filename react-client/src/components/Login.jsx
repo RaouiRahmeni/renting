@@ -15,7 +15,7 @@ class Login extends React.Component {
     handleChangePassword(e) {
         this.setState({ password: e.target.value })
     }
-    
+
     getUser() {
         axios.post('/api/renting/login', { username: this.state.username, password: this.state.password }).then(({ data }) => {
 
@@ -32,23 +32,29 @@ class Login extends React.Component {
     }
     render() {
         return (
+
             <div>
-                <h2>login</h2>
-                <div className="input-container">
-                    <i className="fa fa-user icon"></i>
-                    <input className="input-field" type="text" placeholder="Username" name="usrnm"
-                    onChange={this.handleChangeUserName.bind(this)}/>
+                <div className="left-side">
+<h1></h1>
                 </div>
+                <div className="right-side">
+                    <h2>login</h2>
+                    <div className="input-container">
+                        <i className="fa fa-user icon"></i>
+                        <input className="input-field" type="text" placeholder="Username" name="usrnm"
+                            onChange={this.handleChangeUserName.bind(this)} />
+                    </div>
 
-                
 
-                <div className="input-container">
-                            <i className="fa fa-key icon"></i>
-                            <input className="input-field" type="password" placeholder="Password" name="psw"
-                            onChange={this.handleChangePassword.bind(this)}/>
+
+                    <div className="input-container">
+                        <i className="fa fa-key icon"></i>
+                        <input className="input-field" type="password" placeholder="Password" name="psw"
+                            onChange={this.handleChangePassword.bind(this)} />
+                    </div>
+
+                    <button type="submit" className="btn" onClick={() => this.getUser()}>Register</button>
                 </div>
-
-                            <button type="submit" className="btn" onClick={() => this.getUser()}>Register</button>
 
 
             </div>)
