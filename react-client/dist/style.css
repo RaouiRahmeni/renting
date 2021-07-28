@@ -64,7 +64,8 @@ body {
 }
 
 .nav {
-  background-color: darkslateblue;
+  /* background: linear-gradient(70deg, blue, pink); */
+  background:linear-gradient(blue, 10%, rgb(241, 200, 207));
   margin: 0px;
   padding: 10px;
   display: flex;
@@ -105,4 +106,46 @@ body {
 .right-side {
   float: right;
   width: 500px;
+}
+/* Style the button inside the input container */
+.search-container button {
+  background-color: darkorchid;
+  color: white;
+  
+  
+  width: 100%;
+  opacity: 0.9;
+  position: relative;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+.search-container {
+  float: right;
+  display: flex; /* 2. display flex to the rescue */
+  flex-direction: row;
+  
+}
+
+/* Style the input field inside the navbar */
+.search-container input {
+ display: block;
+  padding: 1px;
+  outline: none;
+  
+  margin-top: 1px;
+  font-size: 17px;
+  
+  width: 200px; /* adjust as needed (as long as it doesn't break the topnav) */
+}
+.search-container .input-field:focus {
+  border: 2px solid darkorchid;
 }

@@ -20,8 +20,10 @@ app.post('/api/renting/login', function (req, res) {
       throw error
     }
     else {
-      if(data){
+      if(data.length>0){
         console.log("data from db host:", data);
+        // data[data.length]="host"
+        console.log('data to send to client',data);
         res.send(data)
       }else {
         Visitor.find(req.body,(error, data) => {
@@ -29,8 +31,10 @@ app.post('/api/renting/login', function (req, res) {
             throw error
           }
           else {
-            if(data){
+            if(data.length>0){
               console.log("data from db visitor:", data);
+              // data[data.length]="visitor"
+              console.log('data to send to client',data);
               res.send(data)
             }else{
               Admin.find(req.body,(error, data) => {
@@ -39,6 +43,8 @@ app.post('/api/renting/login', function (req, res) {
                 }
                 else {
                   console.log("data from db admin:", data);
+                  // data[data.length]="admin"
+                  console.log('data to send to client',data);
                   res.send(data)
                 }
               })

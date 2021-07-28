@@ -92,7 +92,7 @@ class Signup extends React.Component {
                 <div>
                     <input type="checkbox" id="host" name="host"
                         />
-                    <label for="host">Host</label>
+                    <label htmlFor="host">Host</label>
                 </div>
                 {/* <div className="input-container">
                             <i className="fa fa-key icon"></i>

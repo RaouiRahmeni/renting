@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -23,10 +24,19 @@ class Login extends React.Component {
             if (data.length === 1) {
 
                 this.props.changeId(data[0]._id)
-                this.props.changeView('create')
+
+                if ($('#hostlogin').is(':checked') ){
+                    this.props.changeView('create')
+                }else if ($('#visitorlogin').is(':checked') ){
+                    this.props.changeView('search')
+                }else if ($('#adminlogin').is(':checked') ){
+                    this.props.changeView('admin')
+                }
+                
+                $('#navbarLogin').value="logout"
+                // $('#navbarLogin').OnClick=this.props.changeView('logout')
             }
-
-
+           
 
         })
     }
@@ -52,8 +62,20 @@ class Login extends React.Component {
                         <input className="input-field" type="password" placeholder="Password" name="psw"
                             onChange={this.handleChangePassword.bind(this)} />
                     </div>
-
-                    <button type="submit" className="btn" onClick={() => this.getUser()}>Register</button>
+                    <div>
+                    <input type="checkbox" id="hostlogin" name="host"
+                        />
+                    <label htmlFor="host">Host</label>
+                
+                    <input type="checkbox" id="visitorlogin" name="visitor"
+                        />
+                    <label htmlFor="host">Visitor</label>
+                
+                    <input type="checkbox" id="adminlogin" name="admin"
+                        />
+                    <label htmlFor="host">Admin</label>
+                </div>
+                    <button type="submit" className="btn" onClick={() => this.getUser()}>Login</button>
                 </div>
 
 

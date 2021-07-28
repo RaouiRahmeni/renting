@@ -15,9 +15,5 @@ const adminSchema = new mongoose.Schema({
 
 
 const Admin = mongoose.model('Admin', adminSchema);
-// var admin1 = new Admin({ username: 'root', password: 'root' });
-//   admin1.save(function (err) {
-//     if (err) return handleError(err);
-//     // saved!
-//   }); 
+
 module.exports= Admin;
