@@ -91,8 +91,8 @@ body {
 
 .left-side {
   float: left;
-  width: 400px;
-  background: center / contain no-repeat url("./left-side.jpg");
+  width: 40%;
+  /* background: center / contain no-repeat url("./left-side.jpg"); */
   height:688px;
   background-size:  700px 700px;
   
@@ -105,7 +105,7 @@ body {
 }
 .right-side {
   float: right;
-  width: 500px;
+  width: 50%;
 }
 /* Style the button inside the input container */
 .search-container button {

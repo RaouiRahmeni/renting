@@ -10,6 +10,16 @@ class Login extends React.Component {
         }
 
     }
+    componentDidMount(){
+        
+        let image = document.getElementById('image')
+        let images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg"]
+        setInterval(function () {
+          let random = Math.floor(Math.random() * 5)
+          image.src = images[random]
+        }, 1000)
+      
+    }
     handleChangeUserName(e) {
         this.setState({ username: e.target.value })
     }
@@ -25,18 +35,18 @@ class Login extends React.Component {
 
                 this.props.changeId(data[0]._id)
 
-                if ($('#hostlogin').is(':checked') ){
+                if ($('#hostlogin').is(':checked')) {
                     this.props.changeView('create')
-                }else if ($('#visitorlogin').is(':checked') ){
+                } else if ($('#visitorlogin').is(':checked')) {
                     this.props.changeView('search')
-                }else if ($('#adminlogin').is(':checked') ){
+                } else if ($('#adminlogin').is(':checked')) {
                     this.props.changeView('admin')
                 }
-                
-                $('#navbarLogin').value="logout"
+
+                $('#navbarLogin').value = "logout"
                 // $('#navbarLogin').OnClick=this.props.changeView('logout')
             }
-           
+
 
         })
     }
@@ -45,7 +55,7 @@ class Login extends React.Component {
 
             <div>
                 <div className="left-side">
-<h1></h1>
+                    <img id="image" src="" ></img>
                 </div>
                 <div className="right-side">
                     <h2>login</h2>
@@ -63,18 +73,18 @@ class Login extends React.Component {
                             onChange={this.handleChangePassword.bind(this)} />
                     </div>
                     <div>
-                    <input type="checkbox" id="hostlogin" name="host"
+                        <input type="checkbox" id="hostlogin" name="host"
                         />
-                    <label htmlFor="host">Host</label>
-                
-                    <input type="checkbox" id="visitorlogin" name="visitor"
+                        <label htmlFor="host">Host</label>
+
+                        <input type="checkbox" id="visitorlogin" name="visitor"
                         />
-                    <label htmlFor="host">Visitor</label>
-                
-                    <input type="checkbox" id="adminlogin" name="admin"
+                        <label htmlFor="host">Visitor</label>
+
+                        <input type="checkbox" id="adminlogin" name="admin"
                         />
-                    <label htmlFor="host">Admin</label>
-                </div>
+                        <label htmlFor="host">Admin</label>
+                    </div>
                     <button type="submit" className="btn" onClick={() => this.getUser()}>Login</button>
                 </div>
 
@@ -85,3 +95,4 @@ class Login extends React.Component {
 }
 
 export default Login;
+
