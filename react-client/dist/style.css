@@ -46,7 +46,7 @@ body {
   font-family: 'PT Serif', sans-serif;
   margin: 10px;
   color: #2C3E50;
-  background-color: #ECF0F1;
+  background-color: white;
   font-size: 1.1em;
 }
 .logo {
@@ -148,4 +148,8 @@ body {
 }
 .search-container .input-field:focus {
   border: 2px solid darkorchid;
+}
+.image-login{
+width:500px;
+height:680px;
 }

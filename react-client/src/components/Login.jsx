@@ -55,7 +55,7 @@ class Login extends React.Component {
 
             <div>
                 <div className="left-side">
-                    <img id="image" src="" ></img>
+                    <img id="image" className="image-login" src="" ></img>
                 </div>
                 <div className="right-side">
                     <h2>login</h2>
