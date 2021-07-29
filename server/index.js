@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const Admin = require('../database-mongodb/Admin.js');
 const Host = require('../database-mongodb/Host.js');
 const Visitor = require('../database-mongodb/Visitor.js');
+const Announcement = require('../database-mongodb/Announcement.js')
 const app = express();
 const PORT = 3000;
 
@@ -84,3 +85,30 @@ app.post('/api/renting/signup/visitor', function (req, res) {
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
+
+
+///create an annoucement request
+app.post("/api/announcement", function(req,res){
+  console.log(req.body);
+
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+  const {title,description,address,numberOfRooms,image1,image2,image3,image4,image5,strongPoints,extraAccomodations,startDate, endDate} = req.body
+  
+  if(!title || !description || !address || !numberOfRooms|| !image1 || !image2 || !image3 || !image4 || !image5 || !strongPoints || !extraAccomodations || !startDate || !endDate || endDate<startDate || startDate < date){
+   return res.status(400).json({
+     message: 'Announcement informations are required',
+   });
+
+
+
+  }else{
+     Announcement.create(req.body,(error)=>{
+    if(error) {
+      res.send(error  )
+    }
+  })
+  }
+ 
+})
