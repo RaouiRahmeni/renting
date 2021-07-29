@@ -112,3 +112,14 @@ app.post("/api/announcement", function(req,res){
   }
  
 })
+
+app.get('/api/renting/fetching', function(req,res){
+  Announcement.find().populate('Host').exec(function(err,data){
+    if(err){
+      throw err
+
+    }else{
+      res.send(data)
+    }
+  })
+})

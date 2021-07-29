@@ -129,6 +129,7 @@ body {
   background: #ccc;
 }
 .search-container {
+  height: 20px;
   float: right;
   display: flex; /* 2. display flex to the rescue */
   flex-direction: row;
@@ -152,4 +153,49 @@ body {
 .image-login{
 width:500px;
 height:680px;
+}
+
+
+/* styling card */
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 90%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+  float:right;
+  width:50%
+}
+
+.card-left{
+  float:left;
+  width: 50%;
+}
+
+.card img{
+  width: 150px;
+  height: 220px;
+  margin: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+#row {
+  display: grid;
+  grid-template-columns: auto auto ;
+}
+.column {
+  float: left;
+  width: 100%;
+  margin:auto;
+  /*padding: 0 10px;*/
 }

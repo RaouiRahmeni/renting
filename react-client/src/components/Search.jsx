@@ -14,6 +14,15 @@ class Search extends React.Component {
         }
 
     }
+
+
+    componentDidMount() {
+        axios.get('/api/renting/fetching').then(({ data }) => {
+            this.setState({ data })
+            console.log(data)
+        })
+    }
+
     handleChangeAddress(e) {
         this.setState({ address: e.target.value })
     }
@@ -35,9 +44,23 @@ class Search extends React.Component {
     
     }
     render() {
+        var list = [];
+        this.state.data.map((element, index) => {
+            list.push(<div className="card" key={index}>
+                <div className="card-left">
+                <img src="left-side.jpg" alt="Avatar" />
+                </div>
+                <div className="container">
+                    <h4><b>{element.title}</b></h4>
+                    <p>{element.description}</p>
+                </div>
+            </div>
+            )
+          }
+        )
         return (
 
-
+           <div>
             <div className="search-container">
 
                 <div className="input-container">
@@ -57,6 +80,9 @@ class Search extends React.Component {
                     <input  type="number" placeholder="Number of visitors" name="visitors" onChange={this.handleChangeNumberOfVisitors.bind(this)} />
                 </div>
                 <button type="submit" onClick={() => { this.searchAnnouncement() }} >Search</button>
+                </div>
+
+                <div  id="row" className="row">{list}</div>
 
 
 
