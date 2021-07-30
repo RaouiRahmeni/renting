@@ -58,7 +58,7 @@ class Login extends React.Component {
                     <img id="image" className="image-login" src="./image1.jpg" ></img>
                 </div>
                 <div className="right-side">
-                    <h2>login</h2>
+                    <h2>Login</h2>
                     <div className="input-container">
                         <i className="fa fa-user icon"></i>
                         <input className="input-field" type="text" placeholder="Username" name="usrnm"
@@ -72,7 +72,9 @@ class Login extends React.Component {
                         <input className="input-field" type="password" placeholder="Password" name="psw"
                             onChange={this.handleChangePassword.bind(this)} />
                     </div>
+
                      <div className='checkboxes'>
+
                         <input type="checkbox" id="hostlogin" name="host"
                         />
                         <label htmlFor="host">Host</label>
@@ -85,7 +87,9 @@ class Login extends React.Component {
                         />
                         <label htmlFor="host">Admin</label>
                     </div>
+
                     <button type="submit" className="btn" id='loginbtn'  onClick={() => this.getUser()}>Login</button>
+
                 </div>
 
 

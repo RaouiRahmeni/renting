@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Francois+One|PT+Serif:400,400i,700,700i');
 * {box-sizing: border-box;}
 
+
 /* Style the input container */
 .input-container {
+
   display: flex;
   width: 100%;
   margin-bottom: 15px;
+
 }
 
 /* Style the form icons */
@@ -63,9 +66,13 @@ body {
 }
 
 .main {
+
   /* margin-left: 10%; */
   display: flex;
   align-content: stretch;
+
+  margin-left: 10%;
+  
 }
 
 .nav {
@@ -110,12 +117,11 @@ body {
   /* background: center / contain no-repeat url("./left-side.jpg"); */
   height:688px;
   background-size:  700px 700px;
-  
-  
+  left:0%;
+  position: fixed;
   margin: 0 auto;
-  margin-left: 0px;
   margin-top: 0px;
-  margin-right: 1px;
+  margin-right: 5%;
   margin-bottom: 0px;
 }
 /* .right-side {
@@ -204,8 +210,10 @@ body {
   border: 2px solid darkorchid;
 }
 .image-login{
-  width:2364px;
-  height:1330px;
+
+width:2364px;
+height:1330px;
+
 }
 
 
