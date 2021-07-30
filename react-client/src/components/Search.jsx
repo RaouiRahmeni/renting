@@ -17,6 +17,7 @@ class Search extends React.Component {
 
 
     componentDidMount() {
+        this.props.changeIsHost()
         axios.get('/api/renting/fetching').then(({ data }) => {
             this.setState({ data })
             console.log(data)
@@ -37,7 +38,7 @@ class Search extends React.Component {
         this.setState({ numberOfVisitors: e.target.value })
     }
    addToFavoris(element){
-    axios.post('/api/renting/favoris/'+this.props.id, {
+    axios.put('/api/renting/favoris/'+this.props.id, {
         favoris:element._id
     }).then((data) => {
 
@@ -65,6 +66,7 @@ class Search extends React.Component {
 
     }
     render() {
+        
         var list = [];
         var dataToLoad = []
         if (this.state.search) {
@@ -73,7 +75,7 @@ class Search extends React.Component {
         dataToLoad.map((element, index) => {
             list.push(<div className="card" key={index}>
                         <div className="card-left">
-                            <img src="left-side.jpg" alt="Avatar" />
+                            <img src={element.picture1} alt="Avatar" />
                         </div>
                         <div className="container">
                             <h4><b>{element.title}</b></h4>

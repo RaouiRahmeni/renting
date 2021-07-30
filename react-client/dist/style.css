@@ -89,7 +89,7 @@ body {
   color: white;
 }
 .nav span:hover{
-  background:darkorchid;
+  color:darkorchid;
   transition:0.5s;
   text-transform:uppercase;
 }
@@ -239,15 +239,5 @@ height:680px;
   text-align: center;
   border: 2px solid white;
 }
-/* logo icon rotation continue*/
-.logo-icon{
-  animation: example 1s infinite;
-}
 
-
-@keyframes example {
-0%   {background-color:darkorchid;  top:0px;}
-25%  {background-color:pink;  top:700px;}
-
-}
 

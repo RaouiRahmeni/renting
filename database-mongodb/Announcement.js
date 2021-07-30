@@ -1,5 +1,6 @@
 
 const Host = require('./Host');
+const Visitor = require('./Visitor');
 const mongoose = require('mongoose'), Schema = mongoose.Schema;
 const db = require('./index.js');
 mongoose.Promise = global.Promise;
@@ -22,7 +23,8 @@ const announcementSchema = new mongoose.Schema({
     views:Number,
     startDate:Date,
     endDate:Date,
-    host : { type: Schema.Types.ObjectId, ref: 'Host' }
+    host : { type: Schema.Types.ObjectId, ref: 'Host' },
+    visitor:[{ type: Schema.Types.ObjectId, ref: 'Visitor' }]
   },
     {
       timestamps: true
