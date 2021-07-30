@@ -82,9 +82,7 @@ app.post('/api/renting/signup/visitor', function (req, res) {
     
   })
 });
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+
 
 
 ///create an annoucement request
@@ -94,22 +92,30 @@ app.post("/api/announcement", function(req,res){
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-  const {title,description,address,numberOfRooms,image1,image2,image3,image4,image5,strongPoints,extraAccomodations,startDate, endDate} = req.body
+  const {title,description,address,numberOfRooms,numberOfVisitors,picture1,picture2,picture3,picture4,picture5,
+    strongPoints,extraAccomodations,startDate, endDate} = req.body
   
-  if(!title || !description || !address || !numberOfRooms|| !image1 || !image2 || !image3 || !image4 || !image5 || !strongPoints || !extraAccomodations || !startDate || !endDate || endDate<startDate || startDate < date){
-   return res.status(400).json({
-     message: 'Announcement informations are required',
-   });
+    Announcement.create(req.body,(error)=>{
+      if(error) {
+        res.send(error  )
+      }
+    })
+  // if(!title || !description || !address || !numberOfRooms|| !numberOfVisitors|| !picture1 || !picture2 || 
+  //   !picture3 || !picture4 || !picture5 || !strongPoints || !extraAccomodations || !startDate || !endDate 
+  //   || endDate<startDate || startDate < date){
+  //  return res.status(400).json({
+  //    message: 'Announcement informations are required',
+  //  });
 
 
 
-  }else{
-     Announcement.create(req.body,(error)=>{
-    if(error) {
-      res.send(error  )
-    }
-  })
-  }
+  // }else{
+  //    Announcement.create(req.body,(error)=>{
+  //   if(error) {
+  //     res.send(error  )
+  //   }
+  // })
+  // }
  
 })
 
@@ -123,3 +129,25 @@ app.get('/api/renting/fetching', function(req,res){
     }
   })
 })
+
+//add to favoris
+app.put('/api/renting/favoris/:_id', function (req, res) {
+  
+    console.log("req in server in save",req.body);
+   // console.log('id from storage:',req.params);
+   Visitor.updateOne({_id:req.params},req.body,(error, data) => {
+     if (error) {
+       throw error
+     }
+     else {
+        console.log("data from db:", data);
+       res.send(data)
+     }
+   })
+ });
+
+
+ 
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});

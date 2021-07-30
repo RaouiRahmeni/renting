@@ -42,9 +42,9 @@ class Login extends React.Component {
                 } else if ($('#adminlogin').is(':checked')) {
                     this.props.changeView('admin')
                 }
-
-                $('#navbarLogin').value = "logout"
-                // $('#navbarLogin').OnClick=this.props.changeView('logout')
+                this.props.changeIsLogin();
+                
+              
             }
 
 
@@ -55,7 +55,7 @@ class Login extends React.Component {
 
             <div>
                 <div className="left-side">
-                    <img id="image" className="image-login" src="" ></img>
+                    <img id="image" className="image-login" src="./image1.jpg" ></img>
                 </div>
                 <div className="right-side">
                     <h2>login</h2>

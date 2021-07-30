@@ -42,7 +42,7 @@ class Signup extends React.Component {
             }).then((data) => {
 
                 this.props.changeId(data[0]._id)
-                this.props.changeView('createAnnouncement');
+                this.props.changeView('create');
 
             })
 
@@ -94,10 +94,7 @@ class Signup extends React.Component {
                         />
                     <label htmlFor="host">Host</label>
                 </div>
-                {/* <div className="input-container">
-                            <i className="fa fa-key icon"></i>
-                            <input className="input-field" type="password" placeholder="Repeat Password" name="psw"  onChange={this.handleChangeRepeatPassword.bind(this)}/>
-                </div> */}
+                
 
                 <button type="submit" className="btn" onClick={() => { this.addUser() }} >Register</button>
 

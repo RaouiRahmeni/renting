@@ -25,10 +25,12 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
   }
   handleLoginClick() {
-    this.setState({isLoggedIn: true});
+    // this.setState({isLoggedIn: true});
     this.changeView('login')
   }
-
+changeIsLogin(){
+  this.setState({isLoggedIn: true});
+}
   handleLogoutClick() {
     this.setState({isLoggedIn: false});
     this.changeView('logout')
@@ -50,12 +52,12 @@ class App extends React.Component {
     const { view } = this.state;
 
     if (view === 'logout' || view === 'login') {
-      return <Login changeView={this.changeView} changeId={this.changeId.bind(this)} />
+      return <Login changeView={this.changeView} changeId={this.changeId.bind(this)} changeIsLogin={this.changeIsLogin.bind(this)}/>
 
     } else if (view === 'signup') {
       return <Signup changeView={this.changeView} changeId={this.changeId.bind(this)} />
     } else if (view === 'search') {
-      return <Search changeView={this.changeView} />
+      return <Search changeView={this.changeView} id={this.state.id}/>
     } else if (view === 'create') {
       return <Create id={this.state.id} />
     } else if (view === 'admin') {
@@ -70,9 +72,13 @@ class App extends React.Component {
     return (
       <div>
         <div className="nav">
-          <span className="logo"
+          <span className="logo"      
             >
-            New Way
+              <div >
+              <i className="fa fa-gg-circle" ></i>
+              New Way
+              </div>
+            
           </span>
 
           <span className="nav-unselected" onClick={() => this.changeView('signup')}>

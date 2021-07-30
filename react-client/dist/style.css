@@ -88,7 +88,11 @@ body {
   font-size: 1.1em;
   color: white;
 }
-
+.nav span:hover{
+  background:darkorchid;
+  transition:0.5s;
+  text-transform:uppercase;
+}
 .left-side {
   float: left;
   width: 40%;
@@ -119,7 +123,7 @@ body {
   padding: 6px;
   margin-top: 8px;
   margin-right: 16px;
-  
+  height:37px;
   font-size: 17px;
   border: none;
   cursor: pointer;
@@ -129,7 +133,7 @@ body {
   background: #ccc;
 }
 .search-container {
-  height: 20px;
+  height: 50px;
   float: right;
   display: flex; /* 2. display flex to the rescue */
   flex-direction: row;
@@ -139,10 +143,11 @@ body {
 /* Style the input field inside the navbar */
 .search-container input {
  display: block;
-  padding: 1px;
+  padding: 6px;
   outline: none;
+  height:100%;
   
-  margin-top: 1px;
+  margin-top: 8px;
   font-size: 17px;
   
   width: 200px; /* adjust as needed (as long as it doesn't break the topnav) */
@@ -164,6 +169,7 @@ height:680px;
   width: 90%;
   margin-top: 5px;
   margin-bottom: 5px;
+  position: relative;
 }
 
 .card:hover {
@@ -173,7 +179,8 @@ height:680px;
 .container {
   padding: 2px 16px;
   float:right;
-  width:50%
+  width:50%;
+  
 }
 
 .card-left{
@@ -190,6 +197,7 @@ height:680px;
 }
 
 #row {
+  margin-top: 60px;
   display: grid;
   grid-template-columns: auto auto ;
 }
@@ -199,3 +207,47 @@ height:680px;
   margin:auto;
   /*padding: 0 10px;*/
 }
+.announcement-home{
+  min-height: 10em;
+    display: table-cell;
+    vertical-align: middle;
+}
+/*style of images in create announcement*/
+.announcement-images{
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+}
+.announcement-images img{
+  height:100px;
+  width:100px;
+}
+
+/*style of like button in rendering anouncement*/
+ .card .like-button{
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  font-size: 18px;
+  
+}
+.card .like-button button{
+  padding: 10px;
+  background: white;
+  color: darkorchid;
+ 
+  text-align: center;
+  border: 2px solid white;
+}
+/* logo icon rotation continue*/
+.logo-icon{
+  animation: example 1s infinite;
+}
+
+
+@keyframes example {
+0%   {background-color:darkorchid;  top:0px;}
+25%  {background-color:pink;  top:700px;}
+
+}
+

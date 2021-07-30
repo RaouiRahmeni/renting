@@ -11,7 +11,7 @@ const visitorSchema = new mongoose.Schema({
   cardId:String,
   phone:String,
   email: String,
-  Favoris:[{ type: Schema.Types.ObjectId, ref: 'Booking' }],
+  Favoris:[{ type: Schema.Types.ObjectId, ref: 'Announcement' }],
   bookings: [{ type: Schema.Types.ObjectId, ref: 'Booking' }],
   history: [{ type: Schema.Types.ObjectId, ref: 'BookingHistory' }]
 },
