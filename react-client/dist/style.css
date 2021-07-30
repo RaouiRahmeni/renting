@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Francois+One|PT+Serif:400,400i,700,700i');
 * {box-sizing: border-box;}
 
+
 /* Style the input container */
 .input-container {
+
   display: flex;
   width: 100%;
   margin-bottom: 15px;
+
 }
 
 /* Style the form icons */
@@ -15,6 +18,9 @@
   color: white;
   min-width: 50px;
   text-align: center;
+  margin-left: 1em;
+  border-radius: 10%;
+  border: solid black;
 }
 
 /* Style the input fields */
@@ -22,6 +28,7 @@
   width: 100%;
   padding: 10px;
   outline: none;
+  margin-right: 1em;
 }
 
 .input-field:focus {
@@ -60,7 +67,9 @@ body {
 
 .main {
   margin-left: 10%;
-  margin-right: 10%;
+  display: flex;
+  align-content: stretch;
+
 }
 
 .nav {
@@ -72,6 +81,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   font-family: 'PT Serif', sans-serif;
+  font-weight: bold;
 }
 
 .nav-selected {
@@ -99,17 +109,49 @@ body {
   /* background: center / contain no-repeat url("./left-side.jpg"); */
   height:688px;
   background-size:  700px 700px;
-  
-  
+  left:0%;
+  position: fixed;
   margin: 0 auto;
-  margin-left: 0px;
   margin-top: 0px;
-  margin-right: 1px;
+  margin-right: 5%;
   margin-bottom: 0px;
 }
 .right-side {
+
   float: right;
+  width: 25%;
+  margin-top: 4em;
+  margin-right: 10%;
+  margin-left: 5%;
+  right: 0%;
+  position: fixed;
+  background-color: rgb(28, 28, 71);
+  border: solid black;
+  border-radius: 3%;
+}
+
+#visitorlogin{
+  margin-left: 2em;
+}
+
+#adminlogin{
+  margin-left: 2em; 
+}
+.checkboxes label{
+  color: white;
+  font-weight: bold;
+}
+#loginbtn{
   width: 50%;
+  margin-left: 25%;
+  border:solid black;
+  border-radius: 10%;
+}
+
+.right-side h2{
+  text-align: center;
+  color: white;
+  font-weight: bolder;
 }
 /* Style the button inside the input container */
 .search-container button {
@@ -156,8 +198,8 @@ body {
   border: 2px solid darkorchid;
 }
 .image-login{
-width:500px;
-height:680px;
+width:2364px;
+height:1330px;
 }
 
 
