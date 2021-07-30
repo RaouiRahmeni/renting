@@ -117,9 +117,9 @@ app.post("/api/announcement", function (req, res) {
 })
 
 app.get('/api/renting/fetching', function (req, res) {
-  Announcement.find().populate('Host').exec(function (err, data) {
+  Announcement.find().populate('host').exec(function (err, data) {
     if (err) {
-      throw err
+      console.error("iam in error",err) 
 
     } else {
       res.send(data)
@@ -128,31 +128,12 @@ app.get('/api/renting/fetching', function (req, res) {
 })
 
 //add to favoris
-app.put('/api/renting/favoris/:_id', function (req, res) {
+app.put('/api/renting/favoris/add/:id', function (req, res) {
 
-  console.log("req in server: ", req.body);
-  // console.log('id from storage:',req.params);
-  // Visitor.find({ _id: req.params }).populate('Announcement').exec(function (err, data) {
-  //   if (err) {
-  //     throw err
-
-  //   } else {
-  //     // console.log("data from find :",data[0].email);
-  //     data[0].Favoris.push(req.body.favoris)
-  //     Visitor.updateOne({ _id: req.params }, data[0], (error, dataVisitor) => {
-  //       if (error) {
-  //         throw error
-  //       }
-  //       else {
-  //         // console.log("data from db:", dataVisitor);
-  //         res.send(dataVisitor)
-  //       }
-  //     })
-
-  //   }
-  // })
+  console.log("req in server: ", req.params);
+  
   Visitor.findByIdAndUpdate(
-    req.params ,
+    req.params.id ,
     { $push: { Favoris: req.body.favoris } },
     { new: true, useFindAndModify: false }, (error, data) => {
       if (error) {
@@ -166,7 +147,7 @@ app.put('/api/renting/favoris/:_id', function (req, res) {
   );
   Announcement.findByIdAndUpdate(
     req.body.favoris  ,
-    { $push: { visitor: req.params} },
+    { $push: { visitor: req.params.id} },
     { new: true, useFindAndModify: false }, (error, data) => {
       if (error) {
                 throw error
@@ -181,8 +162,9 @@ app.put('/api/renting/favoris/:_id', function (req, res) {
 });
 //get favoris 
 app.get('/api/renting/fetching/favoris/:id', function (req, res) {
-  Announcement.find({visitor:req.params.id}).populate('Visitor').exec(function (err, data) {
+  Announcement.find({visitor:req.params.id}).populate("visitor host").exec( (err, data)=> {
     if (err) {
+      console.error("i am in error");
       throw err
 
     } else {
@@ -193,6 +175,39 @@ app.get('/api/renting/fetching/favoris/:id', function (req, res) {
   })
 })
 
+//delete announcement from the favoris in visitor and visitor  in announcements
+
+app.put('/api/renting/favoris/delete/:_id', function (req, res) {
+
+  console.log("req in server: ", req.body);
+  
+  Visitor.findByIdAndUpdate(
+    req.params ,
+    {$pull:{Favoris: { $in:[req.body.favoris]} }},{new:true},(error, data) => {
+      if (error) {
+                throw error
+              }
+              else {
+                 console.log("data from db:", data);
+                res.send(data)
+              }
+    }
+  );
+  Announcement.findByIdAndUpdate(
+    req.body.favoris ,
+    { $pull: { visitor:  { $in:[req.params]}} },
+    {new:true},(error, data) => {
+      if (error) {
+                throw error
+              }
+              else {
+                 console.log("data from db:", data);
+                res.send(data)
+              }
+    }
+  );
+
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

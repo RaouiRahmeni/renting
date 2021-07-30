@@ -76,7 +76,6 @@ changeIsLogin(){
       return <Favoris  id={this.state.id} changeIsHost={this.changeIsHost.bind(this)}/>
     }
 
-
   }
   render() {
     const isLoggedIn = this.state.isLoggedIn;

@@ -16,7 +16,7 @@ class Favoris extends React.Component {
         })
     }
     addToFavoris(element){
-        axios.put('/api/renting/favoris/'+this.props.id, {
+        axios.put('/api/renting/favoris/add/'+this.props.id, {
             favoris:element._id
         }).then((data) => {
     

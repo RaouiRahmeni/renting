@@ -10,7 +10,8 @@ class Search extends React.Component {
             numberOfVisitors: 0,
             data: [],
             filteredData: [],
-            search: false
+            search: false,
+            
         }
 
     }
@@ -22,6 +23,7 @@ class Search extends React.Component {
             this.setState({ data })
             console.log(data)
         })
+        
     }
 
     handleChangeAddress(e) {
@@ -37,15 +39,27 @@ class Search extends React.Component {
     handleChangeNumberOfVisitors(e) {
         this.setState({ numberOfVisitors: e.target.value })
     }
-   addToFavoris(element){
-    axios.put('/api/renting/favoris/'+this.props.id, {
-        favoris:element._id
-    }).then((data) => {
+    addToFavoris(element) {
+        axios.put('/api/renting/favoris/add/' + this.props.id, {
+            favoris: element._id
+        }).then((data) => {
 
-        console.log("announcement added to favoris correctly");
+            console.log("announcement added to favoris correctly");
 
-    })
-   }
+        })
+        
+    }
+
+    removeFromFavoris(element) {
+        axios.put('/api/renting/favoris/delete/' + this.props.id, {
+            favoris: element._id
+        }).then((data) => {
+
+            console.log("announcement removed favoris correctly");
+
+        })
+        
+    }
     searchAnnouncement() {
         console.log("data from search", this.state.address);
 
@@ -71,22 +85,28 @@ class Search extends React.Component {
         var dataToLoad = []
         if (this.state.search) {
             dataToLoad = this.state.filteredData
+
         } else { dataToLoad = this.state.data }
+        
         dataToLoad.map((element, index) => {
             list.push(<div className="card" key={index}>
-                        <div className="card-left">
-                            <img src={element.picture1} alt="Avatar" />
-                        </div>
-                        <div className="container">
-                            <h4><b>{element.title}</b></h4>
-                            <p>{element.description}</p>
+                <div className="card-left">
+                    <img src={element.picture1} alt="Avatar" />
+                </div>
+                <div className="container">
+                    <h4><b>{element.title}</b></h4>
+                    <p>{element.description}</p>
 
-                        </div>
-                        <div className="like-button">
-                        <button ><i className="fa fa-eye" ></i></button>
-                        <button onClick={() => { this.addToFavoris(element) }} ><i className="fa fa-thumbs-up"></i></button>
-                        </div>
-                    </div>
+                </div>
+                <div className="like-button">
+                    <button ><i className="fa fa-eye" ></i></button>
+
+                    <button  className="not-liked" onClick={() => { this.addToFavoris(element) }} ><i className="fa fa-thumbs-up" ></i></button>
+                    <button  className="liked" onClick={() => { this.removeFromFavoris(element) }} ><i className="fa fa-thumbs-down" aria-hidden="true"></i></button>
+
+
+                </div>
+            </div>
             )
         }
         )

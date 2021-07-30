@@ -72,7 +72,7 @@ class Login extends React.Component {
                         <input className="input-field" type="password" placeholder="Password" name="psw"
                             onChange={this.handleChangePassword.bind(this)} />
                     </div>
-                    <div>
+                     <div className='checkboxes'>
                         <input type="checkbox" id="hostlogin" name="host"
                         />
                         <label htmlFor="host">Host</label>
@@ -85,7 +85,7 @@ class Login extends React.Component {
                         />
                         <label htmlFor="host">Admin</label>
                     </div>
-                    <button type="submit" className="btn" onClick={() => this.getUser()}>Login</button>
+                    <button type="submit" className="btn" id='loginbtn'  onClick={() => this.getUser()}>Login</button>
                 </div>
 
 
