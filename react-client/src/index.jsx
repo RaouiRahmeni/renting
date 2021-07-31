@@ -9,6 +9,7 @@ import Create from './components/Create.jsx';
 import Admin from './components/Admin.jsx';
 import Home from './components/Home.jsx';
 import Favoris from './components/Favoris.jsx';
+import BookingVisitor from './components/BookingVisitor.jsx';
 import axios from 'axios';
 
 
@@ -20,7 +21,9 @@ class App extends React.Component {
       view: 'home',
       id: "",
       isLoggedIn: false,
-      isHost:false
+      isHost:false,
+      isVisitor:false,
+      announcement:{}
     }
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
@@ -45,8 +48,17 @@ changeIsLogin(){
 
     });
   }
+  getAnnouncement(announcement){
+    this.setState({
+      announcement:announcement,
+
+    });
+  }
   changeIsHost(){
     this.setState({isHost:true})
+  }
+  changeIsVisitor(){
+    this.setState({isVisitor:true})
   }
   changeId(id) {
     this.setState({
@@ -65,7 +77,7 @@ changeIsLogin(){
       return <Signup changeView={this.changeView} changeId={this.changeId.bind(this)} />
     } else if (view === 'search') {
      
-      return <Search changeView={this.changeView} id={this.state.id} changeIsHost={this.changeIsHost.bind(this)}/>
+      return <Search changeView={this.changeView} id={this.state.id} changeIsHost={this.changeIsHost.bind(this)} getAnnouncement={this.getAnnouncement.bind(this)}/>
     } else if (view === 'create') {
       return <Create id={this.state.id} />
     } else if (view === 'admin') {
@@ -74,12 +86,16 @@ changeIsLogin(){
       return <Home   />
     }else if (view === 'favoris') {
       return <Favoris  id={this.state.id} changeIsHost={this.changeIsHost.bind(this)}/>
+    }else if (view === 'bookingvisitor') {
+      return <BookingVisitor  id={this.state.id} announcement={this.state.announcement} changeIsVisitor={this.changeIsVisitor.bind(this)}/>
     }
+    
 
   }
   render() {
     const isLoggedIn = this.state.isLoggedIn;
     const isHost=this.state.isHost;
+    const isVisitor=this.state.isVisitor;
     return (
       <div>
         <div className="nav">
@@ -94,7 +110,18 @@ changeIsLogin(){
 
           
 
-        
+          {isVisitor
+        ? <span  className="nav-unselected" onClick={() => this.changeView('create')}>
+        Create 
+        </span>
+        :<span></span>
+      }
+      {/* {isVisitor
+        ? <span  className="nav-unselected" onClick={() => this.changeView('search')}>
+        Announcements
+        </span>
+        :<span></span>
+      } */}
       {isHost
         ? <span  className="nav-unselected" onClick={() => this.changeView('favoris')}>
         Favoris

@@ -208,8 +208,19 @@ app.put('/api/renting/favoris/delete/:_id', function (req, res) {
   );
 
 });
-/*get all announcement for admin*/
-
+/*update views for announcement */
+app.put('/api/announcement/:Id', function (req, res) {
+  console.log("req in server",req.body);
+  Announcement.updateOne({_id:req.params.Id},req.body,(error, data) => {
+    if (error) {
+      throw error
+    }
+    else {
+      // console.log("data from db:", data);
+      res.send(data)
+    }
+  })
+});
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

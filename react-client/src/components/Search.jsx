@@ -79,6 +79,10 @@ class Search extends React.Component {
         // console.log('filteredData:', filteredData);
 
     }
+    handleClickViewAnnouncement(element){
+        this.props.getAnnouncement(element)
+        this.props.changeView('bookingvisitor')
+    }
     render() {
         
         var list = [];
@@ -99,7 +103,7 @@ class Search extends React.Component {
 
                 </div>
                 <div className="like-button">
-                    <button ><i className="fa fa-eye" ></i></button>
+                    <button onClick={()=>this.handleClickViewAnnouncement(element)}><i className="fa fa-eye" ></i></button>
 
                     <button  className="not-liked" onClick={() => { this.addToFavoris(element) }} ><i className="fa fa-thumbs-up" ></i></button>
                     <button  className="liked" onClick={() => { this.removeFromFavoris(element) }} ><i className="fa fa-thumbs-down" aria-hidden="true"></i></button>
