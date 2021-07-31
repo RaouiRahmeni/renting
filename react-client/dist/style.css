@@ -302,3 +302,30 @@ height:1330px;
   
   color:red
 }
+/*admin styling */
+.post-list-entry {
+  list-style: none;
+  border: 1px solid #3498DB;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 75%;
+}
+
+.post-list-entry:hover {
+  cursor: pointer;
+  background-color: rgba(52, 152, 219, 0.17);
+}
+
+.post-list-entry-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: 'Francois One';
+}
+
+.post-list-entry-stats {
+  font-size: .8em;
+}
+
+.stats-list-item-views {
+  font-weight: bold;
+}

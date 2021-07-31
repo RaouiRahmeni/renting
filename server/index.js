@@ -117,7 +117,7 @@ app.post("/api/announcement", function (req, res) {
 })
 
 app.get('/api/renting/fetching', function (req, res) {
-  Announcement.find().populate('host').exec(function (err, data) {
+  Announcement.find().populate('host visitor').exec(function (err, data) {
     if (err) {
       console.error("iam in error",err) 
 
@@ -208,6 +208,7 @@ app.put('/api/renting/favoris/delete/:_id', function (req, res) {
   );
 
 });
+/*get all announcement for admin*/
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
