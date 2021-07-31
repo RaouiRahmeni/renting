@@ -4,60 +4,67 @@ class Host extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:[],
+            data: [],
         }
-        this.remove=this.remove.bind(this)
+        this.remove = this.remove.bind(this)
     }
-    componentDidMount(){
-        axios.get('/api/host').then((data)=>{
+    componentDidMount() {
+        axios.get('/api/host').then((data) => {
             let annoucements = data.data.filter(annoucement =>
-               annoucement.host === this.props.id
+                annoucement.host === this.props.id
             )
             console.log(annoucements);
             this.setState({
-                data:annoucements
+                data: annoucements
             })
         })
     }
-    remove(annoucement){
-        console.log(annoucement);
-        axios.delete('/api/host/delete/'+ annoucement._id ).then((res)=>{
-            this.componentDidMount()
+    remove(annoucement) {
+        console.log("announcement to delete:", annoucement);
+        axios.delete('/api/host/delete/' + annoucement._id).then((res) => {
+
         })
-        axios.put('/api/host/update/'+ annoucement._id,{id: annoucement.hodt}).then((res)=>{
+
+
+        axios.put('/api/renting/announcement/update', { id: annoucement._id, host: annoucement.host }).then((data) => {
+
+            console.log('succes')
         })
+
+        this.componentDidMount()
     }
+
     render() {
         return (
             <div>
-          {
-              this.state.data.map((annoucement, index) =>(
-                <div className="hostAnnoucement" key={index}>
-                     <h2>{annoucement.title}</h2>
-                    <div className="imgs">
-                    <img src={annoucement.picture1} className="hostAnnoucementImg" alt="img1" />
-                    <img src={annoucement.picture2} className="hostAnnoucementImg" alt="img2" />
-                    <img src={annoucement.picture3} className="hostAnnoucementImg" alt="img3" />
-                    <img src={annoucement.picture4} className="hostAnnoucementImg" alt="img4" />
-                    <img src={annoucement.picture5} className="hostAnnoucementImg" alt="img5" />
-                    </div>
-                    <div>
-                        <h2>{annoucement.address}</h2>
-                        <p>{annoucement.description}</p>
-                        <p>available rooms: {annoucement.numberOfRooms}</p>
-                        <p>visited {annoucement.numberOfVisitors} times </p>
-                        <p>{annoucement.strongPoints}</p>
-                        <p>{annoucement.extraAccomodations}</p>
-                        <p>available from {annoucement.startDate}</p>
-                        <p>to the end of {annoucement.startDate}</p>
-                    </div>
-                    <button type='' className="hostBtnDelete" onClick={()=> (this.remove(annoucement))}>Delete</button>
-                </div>
-              )
-              )
-          }
+                {
+                    this.state.data.map((annoucement, index) => (
+                        <div className="hostAnnoucement" key={index}>
+                            <h2>{annoucement.title}</h2>
+                            <div className="imgs">
+                                <img src={annoucement.picture1} className="hostAnnoucementImg" alt="img1" />
+                                <img src={annoucement.picture2} className="hostAnnoucementImg" alt="img2" />
+                                <img src={annoucement.picture3} className="hostAnnoucementImg" alt="img3" />
+                                <img src={annoucement.picture4} className="hostAnnoucementImg" alt="img4" />
+                                <img src={annoucement.picture5} className="hostAnnoucementImg" alt="img5" />
+                            </div>
+                            <div>
+                                <h2>{annoucement.address}</h2>
+                                <p>{annoucement.description}</p>
+                                <p>available rooms: {annoucement.numberOfRooms}</p>
+                                <p>visited {annoucement.numberOfVisitors} times </p>
+                                <p>{annoucement.strongPoints}</p>
+                                <p>{annoucement.extraAccomodations}</p>
+                                <p>available from {annoucement.startDate}</p>
+                                <p>to the end of {annoucement.startDate}</p>
+                            </div>
+                            <button type='' className="hostBtnDelete" onClick={() => (this.remove(annoucement))}>Delete</button>
+                        </div>
+                    )
+                    )
+                }
             </div>
-            )
+        )
     }
 }
 export default Host;

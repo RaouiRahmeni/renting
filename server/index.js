@@ -254,10 +254,11 @@ app.delete('/api/host/delete/:id', function(req, res){
     }
   })
 })
-app.put(('/api/host/update/:id', function(req, res){
-  Host.findByIdAndUpdate(
-    req.body.id ,
-    {$pull:{announcements: { $in:[req.params.id]} }},{new:true},(error, data) => {
+app.put('/api/renting/announcement/update', function (req, res) {
+  console.log("req in server",req.body);
+  Host.findOneAndUpdate(
+    req.body.host ,
+    {$pull:{announcements:req.body.id }},{new:true},(error, data) => {
       if (error) {
                 throw error
               }
@@ -267,7 +268,8 @@ app.put(('/api/host/update/:id', function(req, res){
               }
     }
   );
-}))
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
