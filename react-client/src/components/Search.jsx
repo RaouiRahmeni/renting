@@ -13,7 +13,8 @@ class Search extends React.Component {
             search: false,
             
         }
-
+        this.addToFavoris=this.addToFavoris.bind(this)
+        this.removeToFavoris=this.removeFromFavoris.bind(this)
     }
 
 

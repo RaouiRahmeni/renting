@@ -10,6 +10,7 @@ import Admin from './components/Admin.jsx';
 import Home from './components/Home.jsx';
 import Favoris from './components/Favoris.jsx';
 import BookingVisitor from './components/BookingVisitor.jsx';
+import Host from './components/Host.jsx';
 import axios from 'axios';
 
 
@@ -79,7 +80,7 @@ changeIsLogin(){
      
       return <Search changeView={this.changeView} id={this.state.id} changeIsHost={this.changeIsHost.bind(this)} getAnnouncement={this.getAnnouncement.bind(this)}/>
     } else if (view === 'create') {
-      return <Create id={this.state.id} />
+      return <Create id={this.state.id} changeView={this.changeView}/>
     } else if (view === 'admin') {
       return <Admin id={this.state.id} changeView={this.changeView} />
     }else if (view === 'home') {
@@ -88,6 +89,8 @@ changeIsLogin(){
       return <Favoris  id={this.state.id} changeIsHost={this.changeIsHost.bind(this)}/>
     }else if (view === 'bookingvisitor') {
       return <BookingVisitor  id={this.state.id} announcement={this.state.announcement} changeIsVisitor={this.changeIsVisitor.bind(this)}/>
+    }else if (view === 'host') {
+      return <Host  id={this.state.id} changeView={this.changeView} />
     }
     
 
@@ -110,18 +113,12 @@ changeIsLogin(){
 
           
 
-          {isVisitor
-        ? <span  className="nav-unselected" onClick={() => this.changeView('create')}>
-        Create 
+      {isLoggedIn
+        ? <span  className="nav-unselected" onClick={() => this.changeView('host')}>
+        My Announcements
         </span>
         :<span></span>
       }
-      {/* {isVisitor
-        ? <span  className="nav-unselected" onClick={() => this.changeView('search')}>
-        Announcements
-        </span>
-        :<span></span>
-      } */}
       {isHost
         ? <span  className="nav-unselected" onClick={() => this.changeView('favoris')}>
         Favoris
@@ -140,6 +137,12 @@ changeIsLogin(){
       Register
     </span>
   }
+  {isLoggedIn
+  ?<span  className="nav-unselected"  onClick={() => this.changeView('create')}>
+        Create
+        </span>
+        :<span></span>
+  }
         {isLoggedIn
         ? <span  className="nav-unselected" onClick={this.handleLogoutClick}>
         Logout
@@ -149,6 +152,7 @@ changeIsLogin(){
         </span>
         
       }
+      
         </div>
 
         <div className="main">

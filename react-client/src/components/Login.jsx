@@ -34,9 +34,9 @@ class Login extends React.Component {
             if (data.length === 1) {
 
                 this.props.changeId(data[0]._id)
-
+                localStorage.setItem("id",data[0]._id)
                 if ($('#hostlogin').is(':checked')) {
-                    this.props.changeView('create')
+                    this.props.changeView('host')
                 } else if ($('#visitorlogin').is(':checked')) {
                     this.props.changeView('search')
                 } else if ($('#adminlogin').is(':checked')) {

@@ -83,29 +83,38 @@ app.post('/api/renting/signup/visitor', function (req, res) {
 
 
 ///create an annoucement request
-app.post("/api/announcement", function (req, res) {
-  // console.log(req.body);
-
+app.post("/api/announcement", function(req,res){
+  console.log(req.body);
   var today = new Date();
-  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
-  const { title, description, address, numberOfRooms, numberOfVisitors, picture1, picture2, picture3, picture4, picture5,
-    strongPoints, extraAccomodations, startDate, endDate } = req.body
-
-  Announcement.create(req.body, (error) => {
-    if (error) {
-      res.send(error)
-    }
-  })
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const {title,description,address,numberOfRooms,numberOfVisitors,picture1,picture2,picture3,picture4,picture5,
+    strongPoints,extraAccomodations,startDate, endDate} = req.body
+    Announcement.create(req.body,(error, data)=>{
+      if(error) {
+        res.send(error  )
+      }else{
+        console.log('message', data._id)
+        Host.findByIdAndUpdate(
+          req.body.host  ,
+          { $push: { announcements: data._id} },
+          { new: true, useFindAndModify: false }, (error, data) => {
+            if (error) {
+                      throw error
+                    }
+                    else {
+                       console.log("data from db:", data);
+                      res.send(data)
+                    }
+          }
+        );
+      }
+    })
   // if(!title || !description || !address || !numberOfRooms|| !numberOfVisitors|| !picture1 || !picture2 || 
   //   !picture3 || !picture4 || !picture5 || !strongPoints || !extraAccomodations || !startDate || !endDate 
   //   || endDate<startDate || startDate < date){
   //  return res.status(400).json({
   //    message: 'Announcement informations are required',
   //  });
-
-
-
   // }else{
   //    Announcement.create(req.body,(error)=>{
   //   if(error) {
@@ -113,9 +122,7 @@ app.post("/api/announcement", function (req, res) {
   //   }
   // })
   // }
-
 })
-
 app.get('/api/renting/fetching', function (req, res) {
   Announcement.find().populate('host visitor').exec(function (err, data) {
     if (err) {
@@ -163,6 +170,7 @@ app.put('/api/renting/favoris/add/:id', function (req, res) {
 //get favoris 
 app.get('/api/renting/fetching/favoris/:id', function (req, res) {
   Announcement.find({visitor:req.params.id}).populate("visitor host").exec( (err, data)=> {
+
     if (err) {
       console.error("i am in error");
       throw err
@@ -221,6 +229,45 @@ app.put('/api/announcement/:Id', function (req, res) {
     }
   })
 });
+
+/// get request to fetch host annoucement
+app.get("/api/host", function(req,res){
+  Announcement.find({}, function(err,result){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+})
+//// a delete request for one annoucement
+app.delete('/api/host/delete/:id', function(req, res){
+  console.log(req.params.id);
+  console.log('hey');
+  Announcement.findByIdAndRemove(req.params.id, function(err, result){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+})
+app.put(('/api/host/update/:id', function(req, res){
+  Host.findByIdAndUpdate(
+    req.body.id ,
+    {$pull:{announcements: { $in:[req.params.id]} }},{new:true},(error, data) => {
+      if (error) {
+                throw error
+              }
+              else {
+                 console.log("data from db:", data);
+                res.send(data)
+              }
+    }
+  );
+}))
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

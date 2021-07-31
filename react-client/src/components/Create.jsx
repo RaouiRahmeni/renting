@@ -196,7 +196,7 @@ class Create extends React.Component {
             console.log(error);
         })
 
-
+this.props.changeView('host')
     }
     handleChangeTitle(e) {
         this.setState({ title: e.target.value })

@@ -329,3 +329,20 @@ height:1330px;
 .stats-list-item-views {
   font-weight: bold;
 }
+
+/* styling of an ounnouncement of host*/
+.hostAnnoucement{
+  background-color: #DCDCDC;
+  position: relative;
+  text-align: center;
+  font-family: cursive;
+  border-radius: 3px;
+}
+.hostAnnoucementImg{
+  height:100px;
+  width:100px;
+  transition: transform .2s;
+}
+.hostAnnoucementImg:hover {
+  transform: scale(1.5);
+}
