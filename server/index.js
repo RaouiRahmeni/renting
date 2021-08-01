@@ -5,6 +5,7 @@ const Admin = require('../database-mongodb/Admin.js');
 const Host = require('../database-mongodb/Host.js');
 const Visitor = require('../database-mongodb/Visitor.js');
 const Announcement = require('../database-mongodb/Announcement.js')
+const AnnouncementHistory = require('../database-mongodb/AnnouncementHistory.js')
 const app = express();
 const PORT = 3000;
 
@@ -152,19 +153,23 @@ app.put('/api/renting/favoris/add/:id', function (req, res) {
               }
     }
   );
-  Announcement.findByIdAndUpdate(
-    req.body.favoris  ,
-    { $push: { visitor: req.params.id} },
-    { new: true, useFindAndModify: false }, (error, data) => {
-      if (error) {
-                throw error
-              }
-              else {
-                 console.log("data from db:", data);
-                res.send(data)
-              }
-    }
-  );
+  //////////////////////////////////////////////////
+  ////////////////need more time to fix relation ///
+  //////////////////between tables//////////////////
+  //////////////////////////////////////////////////
+  // Announcement.findByIdAndUpdate(
+  //   req.body.favoris  ,
+  //   { $push: { visitor: req.params.id} },
+  //   { new: true, useFindAndModify: false }, (error, data) => {
+  //     if (error) {
+  //               throw error
+  //             }
+  //             else {
+  //                console.log("data from db:", data);
+  //               res.send(data)
+  //             }
+  //   }
+  // );
 
 });
 //get favoris 
@@ -201,19 +206,23 @@ app.put('/api/renting/favoris/delete/:_id', function (req, res) {
               }
     }
   );
-  Announcement.findByIdAndUpdate(
-    req.body.favoris ,
-    { $pull: { visitor:  { $in:[req.params]}} },
-    {new:true},(error, data) => {
-      if (error) {
-                throw error
-              }
-              else {
-                 console.log("data from db:", data);
-                res.send(data)
-              }
-    }
-  );
+  //////////////////////////////////////////////////
+  ////////////////need more time to fix relation ///
+  //////////////////between tables//////////////////
+  //////////////////////////////////////////////////
+  // Announcement.findByIdAndUpdate(
+  //   req.body.favoris ,
+  //   { $pull: { visitor:  { $in:[req.params]}} },
+  //   {new:true},(error, data) => {
+  //     if (error) {
+  //               throw error
+  //             }
+  //             else {
+  //                console.log("data from db:", data);
+  //               res.send(data)
+  //             }
+  //   }
+  // );
 
 });
 /*update views for announcement */
@@ -269,7 +278,73 @@ app.put('/api/renting/announcement/update', function (req, res) {
     }
   );
 });
+/// get request to add host annoucement in history
+app.post("/api/host/addtohistoric/:id", function(req,res){
+  AnnouncementHistory.create(req.body, function(err,result){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+  //////////////////////////////////////////////////
+  ////////////////need more time to fix relation ///
+  //////////////////between tables//////////////////
+  //////////////////////////////////////////////////
+  // Host.findOneAndUpdate(
+  //   req.params.id ,
+  //   {$push:{history:req.body._id }} ,  { new: true, useFindAndModify: false },{new:true},(error, data) => {
+  //     if (error) {
+  //               throw error
+  //             }
+  //             else {
+  //                console.log("data from db:", data);
+  //               res.send(data)
+  //             }
+  //   }
+  // );
+})
+// get all data in historic for one host
+app.post('/api/host/historic', function (req, res) {
+  console.log('req:',req.body);
+  AnnouncementHistory.find({host:req.body.id}).populate('host').exec(function (err, data) {
+    if (err) {
+      console.error("iam in error",err) 
 
+    } else {
+      res.send(data)
+    }
+  })
+})
+///delete one announcement form history of host
+//// a delete request for one annoucement
+app.delete('/api/host/historic/delete/:id', function(req, res){
+  console.log('delete from history',req.params.id);
+  console.log('hey');
+  AnnouncementHistory.findByIdAndRemove(req.params.id, function(err, result){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+})
+///delete all announcement form history of host
+
+app.delete('/api/host/historic/deleteall/:id', function(req, res){
+  console.log('delete from history',req.params.id);
+  console.log('hey');
+  AnnouncementHistory.remove({host:req.params.id}, function(err, result){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+})
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

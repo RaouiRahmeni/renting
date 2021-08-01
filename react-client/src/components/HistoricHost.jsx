@@ -1,46 +1,48 @@
 import React from 'react';
 import axios from 'axios';
-class Host extends React.Component {
+class HistoricHost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             data: [],
         }
-        this.remove = this.remove.bind(this)
+         this.remove = this.remove.bind(this)
+         this.clearHostHistoric=this.clearHostHistoric.bind(this)
     }
     componentDidMount() {
         this.props.changeIsHost()
-        axios.get('/api/host').then((data) => {
-            let annoucements = data.data.filter(annoucement =>
-                annoucement.host === this.props.id
-            )
-            console.log(annoucements);
+        axios.post('/api/host/historic',{id:this.props.id}).then(({data}) => {
+           
+            console.log('result for historic in specific host',data);
             this.setState({
-                data: annoucements
+                data: data
             })
         })
     }
     remove(annoucement) {
         console.log("announcement to delete:", annoucement);
-        axios.post('/api/host/addtohistoric/'+this.props.id,annoucement).then((res)=>{
-            axios.delete('/api/host/delete/' + annoucement._id).then((res) => {
+        axios.delete('/api/host/historic/delete/' + annoucement._id).then((res) => {
 
-            })
-    
-    
-            axios.put('/api/renting/announcement/update', { id: annoucement._id, host: annoucement.host }).then((data) => {
-    
-                console.log('succes')
-            })
         })
-        
+
+
 
         this.componentDidMount()
     }
+    clearHostHistoric(){
+        console.log("announcement to delete:",this.props.id);
+        axios.delete('/api/host/historic/deleteall/' + this.props.id).then((res) => {
 
+        })
+
+
+
+        this.componentDidMount()
+    }
     render() {
         return (
             <div>
+                
                 {
                     this.state.data.map((annoucement, index) => (
                         <div className="hostAnnoucement" key={index}>
@@ -56,7 +58,7 @@ class Host extends React.Component {
                                 <h2>{annoucement.address}</h2>
                                 <p>{annoucement.description}</p>
                                 <p>available rooms: {annoucement.numberOfRooms}</p>
-                                <p>max visitors: {annoucement.numberOfVisitors}  </p>
+                                <p>max visitors: {annoucement.numberOfVisitors} </p>
                                 <p>{annoucement.strongPoints}</p>
                                 <p>{annoucement.extraAccomodations}</p>
                                 <p>available from {annoucement.startDate}</p>
@@ -67,8 +69,11 @@ class Host extends React.Component {
                     )
                     )
                 }
+                
+                <button className="btn" onClick={()=>this.clearHostHistoric()}>clear all </button>
+                
             </div>
         )
     }
 }
-export default Host;
+export default HistoricHost;

@@ -19,7 +19,7 @@ class Search extends React.Component {
 
 
     componentDidMount() {
-        this.props.changeIsHost()
+        this.props.changeIsVisitor()
         axios.get('/api/renting/fetching').then(({ data }) => {
             this.setState({ data })
             console.log(data)

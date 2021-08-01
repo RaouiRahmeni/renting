@@ -31,6 +31,9 @@ class Create extends React.Component {
         }
 
     }
+    componentDidMount(){
+        this.props.changeIsHost()
+    }
 
     /////// handleing uploading images 
     preview_image1(e) {

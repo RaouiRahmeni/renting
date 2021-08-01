@@ -9,7 +9,7 @@ class Favoris extends React.Component {
 
     }
     componentDidMount() {
-        // this.props.changeIsHost()
+         this.props.changeIsVisitor()
     console.log(this.props.id)
         axios.get('/api/renting/fetching/favoris/' + this.props.id).then(({ data }) => {
             this.setState({ data:data })
@@ -17,25 +17,25 @@ class Favoris extends React.Component {
         })
     }
 
-    // addToFavoris(element) {
-    //     axios.put('/api/renting/favoris/add/' + this.props.id, {
-    //         favoris: element._id
-    //     }).then((data) => {
+    addToFavoris(element) {
+        axios.put('/api/renting/favoris/add/' + this.props.id, {
+            favoris: element._id
+        }).then((data) => {
 
-    //         console.log("announcement added to favoris correctly");
+            console.log("announcement added to favoris correctly");
 
-    //     })
-    // }
-    // removeFromFavoris(element) {
-    //     axios.put('/api/renting/favoris/delete/' + this.props.id, {
-    //         favoris: element._id
-    //     }).then((data) => {
+        })
+    }
+    removeFromFavoris(element) {
+        axios.put('/api/renting/favoris/delete/' + this.props.id, {
+            favoris: element._id
+        }).then((data) => {
 
-    //         console.log("announcement removed favoris correctly");
+            console.log("announcement removed favoris correctly");
 
-    //     })
+        })
         
-    // }
+    }
     handleClickViewAnnouncement(element){
         this.props.getAnnouncement(element)
         this.props.changeView('bookingvisitor')
@@ -54,10 +54,10 @@ class Favoris extends React.Component {
 
                 </div>
                 <div className="like-button">
-                    {/* <button onClick={() => this.handleClickViewAnnouncement(element)}><i className="fa fa-eye" ></i></button>
+                    <button onClick={() => this.handleClickViewAnnouncement(element)}><i className="fa fa-eye" ></i></button>
 
                     <button className="not-liked" onClick={() => { this.addToFavoris(element) }} ><i className="fa fa-thumbs-up" ></i></button>
-                    <button className="liked" onClick={() => { this.removeFromFavoris(element) }} ><i className="fa fa-thumbs-down" aria-hidden="true"></i></button> */}
+                    <button className="liked" onClick={() => { this.removeFromFavoris(element) }} ><i className="fa fa-thumbs-down" aria-hidden="true"></i></button>
 
                 </div>
             </div>

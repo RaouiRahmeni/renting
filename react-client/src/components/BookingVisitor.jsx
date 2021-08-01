@@ -9,7 +9,7 @@ class BookingVisitor extends React.Component {
 
     }
     componentDidMount() {
-        
+        this.props.isVisitor();
     }
     incrementViews() {
         var incrementView=this.props.announcement.views+1;

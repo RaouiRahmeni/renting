@@ -332,11 +332,12 @@ height:1330px;
 
 /* styling of an ounnouncement of host*/
 .hostAnnoucement{
-  background-color: #DCDCDC;
+  background-color: rgb(252, 239, 241);
   position: relative;
   text-align: center;
   font-family: cursive;
   border-radius: 3px;
+  margin-left:400px;
 }
 .hostAnnoucementImg{
   height:100px;
@@ -345,4 +346,14 @@ height:1330px;
 }
 .hostAnnoucementImg:hover {
   transform: scale(1.5);
+}
+.clear-all-btn{
+  
+     position:absolute;
+     top:0;
+     right:0;
+}
+.clear-all{
+  position: relative;
+  width:100%
 }
