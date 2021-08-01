@@ -272,7 +272,7 @@ console.log('date:', this.props.announcement)
                             <input type="number" value={this.props.announcement.numberOfRooms} placeholder="Number of rooms.." className="input-field" onChange={this.handleChangeNumberOfRooms.bind(this)} />
                         </div>
                         <div className="input-container">
-                            <input type="number" value={this.props.announcement.numberOfVisitor} placeholder="Number of visitors.." className="input-field" onChange={this.handleChangeNumberOfVisitors.bind(this)} />
+                            <input type="number" value={this.props.announcement.numberOfVisitors} placeholder="Number of visitors.." className="input-field" onChange={this.handleChangeNumberOfVisitors.bind(this)} />
                         </div>
                         <div className="input-container">
                             <input type="text" value={this.props.announcement.strongPoints} placeholder="Strong Points.." className="input-field" onChange={this.handleChangeStrongPoints.bind(this)} />

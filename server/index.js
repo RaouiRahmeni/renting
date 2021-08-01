@@ -352,7 +352,7 @@ app.post("/api/announcement/update", function(req,res){
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   const {title,description,address,numberOfRooms,numberOfVisitors,picture1,picture2,picture3,picture4,picture5,
     strongPoints,extraAccomodations,startDate, endDate} = req.body
-    Announcement.findOneAndUpdate(req.body._id,req.body,(error, data)=>{
+    Announcement.update(req.body._id,req.body,(error, data)=>{
       if(error) {
         res.send(error  )
       }else{
