@@ -33,6 +33,10 @@ this.formatDate=this.formatDate.bind(this)
 this.getDate=this.getDate.bind(this)
     }
     componentDidMount() {
+        var {title,description,address,numberOfRooms,numberOfVIsitors,image1,image2
+        ,image3,image4,image5,strongPoints,startDate,endDate}=this.props.announcement
+        this.setState({title,description,address,numberOfRooms,numberOfVIsitors,image1,image2
+            ,image3,image4,image5,strongPoints,startDate,endDate})
         this.props.changeIsHost()
         
     }
@@ -251,7 +255,7 @@ console.log('date:', this.props.announcement)
     }
 
     render() {
-        
+        console.log("data from state in update", this.state.title);
         return (
             <div >
                 <h1>Update an announcement</h1>

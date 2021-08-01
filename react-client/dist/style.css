@@ -211,8 +211,8 @@ body {
 }
 .image-login{
 
-width:2364px;
-height:1330px;
+  height: 100vh;
+  width: 100vw;
 
 }
 
@@ -356,4 +356,22 @@ height:1330px;
 .clear-all{
   position: relative;
   width:100%
+}
+/* welcome page*/
+.card-person img{
+width:100px;
+height:100px
+}
+.persons{
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.home-img img{
+  height: 500px;
+  width: 1500px;
+}
+.home h1 {
+ margin: 0 auto;
+ text-align: center;
 }

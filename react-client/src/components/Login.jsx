@@ -17,7 +17,7 @@ class Login extends React.Component {
         setInterval(function () {
           let random = Math.floor(Math.random() * 5)
           image.src = images[random]
-        }, 1000)
+        }, 2000)
       
     }
     handleChangeUserName(e) {
