@@ -345,6 +345,21 @@ app.delete('/api/host/historic/deleteall/:id', function(req, res){
     }
   })
 })
+///update an annoucement 
+app.post("/api/announcement/update", function(req,res){
+  console.log(req.body);
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const {title,description,address,numberOfRooms,numberOfVisitors,picture1,picture2,picture3,picture4,picture5,
+    strongPoints,extraAccomodations,startDate, endDate} = req.body
+    Announcement.findOneAndUpdate(req.body._id,req.body,(error, data)=>{
+      if(error) {
+        res.send(error  )
+      }else{
+        res.send(date)
+      }
+    })
+  })
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

@@ -37,6 +37,10 @@ class Host extends React.Component {
 
         this.componentDidMount()
     }
+    update(announcement){
+        this.props.changeAnnouncementToUpdate(announcement)
+        this.props.changeView('updateannouncement')
+    }
 
     render() {
         return (
@@ -63,6 +67,7 @@ class Host extends React.Component {
                                 <p>to the end of {annoucement.startDate}</p>
                             </div>
                             <button type='' className="btn"  onClick={() => (this.remove(annoucement))}>Delete</button>
+                            <button type='' className="btn"  onClick={() => (this.update(annoucement))}>Update</button>
                         </div>
                     )
                     )
