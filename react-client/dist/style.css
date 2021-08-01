@@ -370,6 +370,7 @@ height:100px
 .home-img img{
   height: 500px;
   width: 1500px;
+  /* background-image: url("./home.jpg"); */
 }
 .home h1 {
  margin: 0 auto;
